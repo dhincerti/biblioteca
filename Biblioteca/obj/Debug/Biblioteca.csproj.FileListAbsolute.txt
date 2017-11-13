@@ -22,3 +22,5 @@ c:\users\ieuser\documents\visual studio 2013\Projects\Biblioteca\Biblioteca\obj\
 c:\users\ieuser\documents\visual studio 2013\Projects\Biblioteca\Biblioteca\obj\Debug\Biblioteca.frmAlterarExcluirClientes.resources
 c:\users\ieuser\documents\visual studio 2013\Projects\Biblioteca\Biblioteca\obj\Debug\Biblioteca.frmAlterarExcluirFuncionarios.resources
 C:\Users\IEUser\Documents\Visual Studio 2013\Projects\Biblioteca\Biblioteca\obj\Debug\Biblioteca.frmAlterarClientes.resources
+C:\Users\IEUser\documents\visual studio 2013\Projects\Biblioteca\Biblioteca\obj\Debug\Biblioteca.frmAlterarLivros.resources
+C:\Users\IEUser\documents\visual studio 2013\Projects\Biblioteca\Biblioteca\obj\Debug\Biblioteca.frmAlterarFuncionarios.resources

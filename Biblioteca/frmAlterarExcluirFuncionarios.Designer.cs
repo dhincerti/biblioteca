@@ -35,17 +35,25 @@
             this.lblMensagem = new System.Windows.Forms.Label();
             this.dgvDados = new System.Windows.Forms.DataGridView();
             this.bibliotecaDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.bibliotecaDS = new Biblioteca.BibliotecaDS();
+            this.funcionariosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.funcionariosTableAdapter = new Biblioteca.BibliotecaDSTableAdapters.FuncionariosTableAdapter();
+            this.idFuncionarioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nomeFuncionarioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.enderecoFuncionarioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cidadeFuncionarioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estadoFuncionarioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.telefoneFuncionarioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cargoFuncionarioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataAdmissaoFuncionarioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataDemissaoFuncionarioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Editar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Excluir = new System.Windows.Forms.DataGridViewButtonColumn();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bibliotecaDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bibliotecaDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.funcionariosBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -83,78 +91,124 @@
             // 
             this.dgvDados.AllowUserToAddRows = false;
             this.dgvDados.AllowUserToDeleteRows = false;
+            this.dgvDados.AutoGenerateColumns = false;
             this.dgvDados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column5,
-            this.Column6,
-            this.Column7,
-            this.Column8});
+            this.idFuncionarioDataGridViewTextBoxColumn,
+            this.nomeFuncionarioDataGridViewTextBoxColumn,
+            this.enderecoFuncionarioDataGridViewTextBoxColumn,
+            this.cidadeFuncionarioDataGridViewTextBoxColumn,
+            this.estadoFuncionarioDataGridViewTextBoxColumn,
+            this.telefoneFuncionarioDataGridViewTextBoxColumn,
+            this.cargoFuncionarioDataGridViewTextBoxColumn,
+            this.dataAdmissaoFuncionarioDataGridViewTextBoxColumn,
+            this.dataDemissaoFuncionarioDataGridViewTextBoxColumn,
+            this.Editar,
+            this.Excluir});
+            this.dgvDados.DataSource = this.funcionariosBindingSource;
             this.dgvDados.Location = new System.Drawing.Point(17, 56);
             this.dgvDados.Name = "dgvDados";
             this.dgvDados.ReadOnly = true;
             this.dgvDados.Size = new System.Drawing.Size(490, 225);
             this.dgvDados.TabIndex = 2;
+            this.dgvDados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDados_CellContentClick);
+            this.dgvDados.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvDados_CellMouseClick);
             // 
-            // Column1
+            // bibliotecaDS
             // 
-            this.Column1.HeaderText = "Nome";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 80;
+            this.bibliotecaDS.DataSetName = "BibliotecaDS";
+            this.bibliotecaDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // Column2
+            // funcionariosBindingSource
             // 
-            this.Column2.HeaderText = "Endereço";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 80;
+            this.funcionariosBindingSource.DataMember = "Funcionarios";
+            this.funcionariosBindingSource.DataSource = this.bibliotecaDS;
             // 
-            // Column3
+            // funcionariosTableAdapter
             // 
-            this.Column3.HeaderText = "Cidade";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 80;
+            this.funcionariosTableAdapter.ClearBeforeFill = true;
             // 
-            // Column4
+            // idFuncionarioDataGridViewTextBoxColumn
             // 
-            this.Column4.HeaderText = "Estado";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 80;
+            this.idFuncionarioDataGridViewTextBoxColumn.DataPropertyName = "Id_Funcionario";
+            this.idFuncionarioDataGridViewTextBoxColumn.HeaderText = "Id_Funcionario";
+            this.idFuncionarioDataGridViewTextBoxColumn.Name = "idFuncionarioDataGridViewTextBoxColumn";
+            this.idFuncionarioDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idFuncionarioDataGridViewTextBoxColumn.Visible = false;
             // 
-            // Column5
+            // nomeFuncionarioDataGridViewTextBoxColumn
             // 
-            this.Column5.HeaderText = "Telefone";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Width = 80;
+            this.nomeFuncionarioDataGridViewTextBoxColumn.DataPropertyName = "Nome_Funcionario";
+            this.nomeFuncionarioDataGridViewTextBoxColumn.HeaderText = "Nome";
+            this.nomeFuncionarioDataGridViewTextBoxColumn.Name = "nomeFuncionarioDataGridViewTextBoxColumn";
+            this.nomeFuncionarioDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // Column6
+            // enderecoFuncionarioDataGridViewTextBoxColumn
             // 
-            this.Column6.HeaderText = "Cargo";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column6.Width = 80;
+            this.enderecoFuncionarioDataGridViewTextBoxColumn.DataPropertyName = "Endereco_Funcionario";
+            this.enderecoFuncionarioDataGridViewTextBoxColumn.HeaderText = "Enderecoo";
+            this.enderecoFuncionarioDataGridViewTextBoxColumn.Name = "enderecoFuncionarioDataGridViewTextBoxColumn";
+            this.enderecoFuncionarioDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // Column7
+            // cidadeFuncionarioDataGridViewTextBoxColumn
             // 
-            this.Column7.HeaderText = "Editar";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            this.Column7.Width = 80;
+            this.cidadeFuncionarioDataGridViewTextBoxColumn.DataPropertyName = "Cidade_Funcionario";
+            this.cidadeFuncionarioDataGridViewTextBoxColumn.HeaderText = "Cidade";
+            this.cidadeFuncionarioDataGridViewTextBoxColumn.Name = "cidadeFuncionarioDataGridViewTextBoxColumn";
+            this.cidadeFuncionarioDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // Column8
+            // estadoFuncionarioDataGridViewTextBoxColumn
             // 
-            this.Column8.HeaderText = "Excluir";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            this.Column8.Width = 80;
+            this.estadoFuncionarioDataGridViewTextBoxColumn.DataPropertyName = "Estado_Funcionario";
+            this.estadoFuncionarioDataGridViewTextBoxColumn.HeaderText = "Estado";
+            this.estadoFuncionarioDataGridViewTextBoxColumn.Name = "estadoFuncionarioDataGridViewTextBoxColumn";
+            this.estadoFuncionarioDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // telefoneFuncionarioDataGridViewTextBoxColumn
+            // 
+            this.telefoneFuncionarioDataGridViewTextBoxColumn.DataPropertyName = "Telefone_Funcionario";
+            this.telefoneFuncionarioDataGridViewTextBoxColumn.HeaderText = "Telefone";
+            this.telefoneFuncionarioDataGridViewTextBoxColumn.Name = "telefoneFuncionarioDataGridViewTextBoxColumn";
+            this.telefoneFuncionarioDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // cargoFuncionarioDataGridViewTextBoxColumn
+            // 
+            this.cargoFuncionarioDataGridViewTextBoxColumn.DataPropertyName = "Cargo_Funcionario";
+            this.cargoFuncionarioDataGridViewTextBoxColumn.HeaderText = "Cargo";
+            this.cargoFuncionarioDataGridViewTextBoxColumn.Name = "cargoFuncionarioDataGridViewTextBoxColumn";
+            this.cargoFuncionarioDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dataAdmissaoFuncionarioDataGridViewTextBoxColumn
+            // 
+            this.dataAdmissaoFuncionarioDataGridViewTextBoxColumn.DataPropertyName = "Data_Admissao_Funcionario";
+            this.dataAdmissaoFuncionarioDataGridViewTextBoxColumn.HeaderText = "Data_Admissao";
+            this.dataAdmissaoFuncionarioDataGridViewTextBoxColumn.Name = "dataAdmissaoFuncionarioDataGridViewTextBoxColumn";
+            this.dataAdmissaoFuncionarioDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dataDemissaoFuncionarioDataGridViewTextBoxColumn
+            // 
+            this.dataDemissaoFuncionarioDataGridViewTextBoxColumn.DataPropertyName = "Data_Demissao_Funcionario";
+            this.dataDemissaoFuncionarioDataGridViewTextBoxColumn.HeaderText = "Data_Demissao";
+            this.dataDemissaoFuncionarioDataGridViewTextBoxColumn.Name = "dataDemissaoFuncionarioDataGridViewTextBoxColumn";
+            this.dataDemissaoFuncionarioDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // Editar
+            // 
+            this.Editar.HeaderText = "";
+            this.Editar.Name = "Editar";
+            this.Editar.ReadOnly = true;
+            this.Editar.Text = ">";
+            this.Editar.UseColumnTextForButtonValue = true;
+            this.Editar.Width = 20;
+            // 
+            // Excluir
+            // 
+            this.Excluir.HeaderText = "";
+            this.Excluir.Name = "Excluir";
+            this.Excluir.ReadOnly = true;
+            this.Excluir.Text = "X";
+            this.Excluir.UseColumnTextForButtonValue = true;
+            this.Excluir.Width = 20;
             // 
             // frmAlterarExcluirFuncionarios
             // 
@@ -170,10 +224,13 @@
             this.Name = "frmAlterarExcluirFuncionarios";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Alterar / Excluir Clientes";
+            this.Load += new System.EventHandler(this.frmAlterarExcluirFuncionarios_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDados)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bibliotecaDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bibliotecaDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.funcionariosBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -186,13 +243,19 @@
         private System.Windows.Forms.Label lblMensagem;
         private System.Windows.Forms.DataGridView dgvDados;
         private System.Windows.Forms.BindingSource bibliotecaDataSetBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewButtonColumn Column7;
-        private System.Windows.Forms.DataGridViewButtonColumn Column8;
+        private BibliotecaDS bibliotecaDS;
+        private System.Windows.Forms.BindingSource funcionariosBindingSource;
+        private BibliotecaDSTableAdapters.FuncionariosTableAdapter funcionariosTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idFuncionarioDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nomeFuncionarioDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn enderecoFuncionarioDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cidadeFuncionarioDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn estadoFuncionarioDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn telefoneFuncionarioDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cargoFuncionarioDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataAdmissaoFuncionarioDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataDemissaoFuncionarioDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewButtonColumn Editar;
+        private System.Windows.Forms.DataGridViewButtonColumn Excluir;
     }
 }

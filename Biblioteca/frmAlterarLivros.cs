@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
@@ -12,59 +11,53 @@ using System.Windows.Forms;
 
 namespace Biblioteca
 {
-    public partial class frmCadastrarLivros : Form
+    public partial class frmAlterarLivros : Form
     {
-        public frmCadastrarLivros()
+        public frmAlterarLivros()
         {
             InitializeComponent();
         }
 
-        private void label4_Click(object sender, EventArgs e)
+        private void textBox5_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void label7_Click(object sender, EventArgs e)
+        private void btnCancelar_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
-            Gravar();
+            AlterarDados();
         }
 
-        private void Gravar()
+        private void AlterarDados()
         {
             bool camposValidos = false;
             try
             {
                 SqlConnection objConexao = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\Biblioteca.mdf;Integrated Security=True;Connect Timeout=30");
-                string strConn = @"INSERT INTO LIVROS (Nome_Livro, Autor_Livro, Ano_Livro,
-Genero_Livro, Editora_Livro, Paginas_Livro, Status_Livro) VALUES (@NomeLivro,
-@Autor, @Ano, @Genero, @Editora, @Paginas, @Status)";
+                string strConn = @"UPDATE LIVROS SET Nome_Livro = @Nome, Autor_Livro =
+@Autor, Ano_Livro = @Ano, Genero_Livro = @Genero, Editora_Livro = @Editora,
+Paginas_Livro = @Paginas, Status_Livro = @Status WHERE Id_Livro = " +
+               Convert.ToUInt32(txtCodigo.Text);
                 SqlCommand objCommand = new SqlCommand(strConn, objConexao);
                 #region Validações dos Campos
-                if (rdbDisponivel.Checked)
+                //Nome do Livro
+                if (!String.IsNullOrEmpty(txtNome.Text))
                 {
-                    objCommand.Parameters.AddWithValue("@Status", "D");
-                    camposValidos = true;
-                }
-                else
-                {
-                    objCommand.Parameters.AddWithValue("@Status", "I");
-                    camposValidos = true;
-                } if (!String.IsNullOrEmpty(txtNome.Text))
-                {
-                    objCommand.Parameters.AddWithValue("@NomeLivro", txtNome.Text);
+                    objCommand.Parameters.AddWithValue("@Nome", txtNome.Text);
                     camposValidos = true;
                     epErro.SetError(txtNome, null);
                 }
                 else
                 {
-                    epErro.SetError(txtNome, "O campo Nome é obrigatório");
+                    epErro.SetError(txtNome, "O campo nome é obrigatório");
                     camposValidos = false;
                 }
+                //Autor
                 if (!String.IsNullOrEmpty(txtAutor.Text))
                 {
                     objCommand.Parameters.AddWithValue("@Autor", txtAutor.Text);
@@ -76,7 +69,7 @@ Genero_Livro, Editora_Livro, Paginas_Livro, Status_Livro) VALUES (@NomeLivro,
                     epErro.SetError(txtAutor, "O campo Autor é obrigatório");
                     camposValidos = false;
                 }
-
+                //Ano
                 if (!String.IsNullOrEmpty(txtAno.Text))
                 {
                     objCommand.Parameters.AddWithValue("@Ano", txtAno.Text);
@@ -88,6 +81,7 @@ Genero_Livro, Editora_Livro, Paginas_Livro, Status_Livro) VALUES (@NomeLivro,
                     epErro.SetError(txtAno, "O campo Ano é obrigatório");
                     camposValidos = false;
                 }
+                //Genero
                 if (!String.IsNullOrEmpty(txtGenero.Text))
                 {
                     objCommand.Parameters.AddWithValue("@Genero", txtGenero.Text);
@@ -99,6 +93,7 @@ Genero_Livro, Editora_Livro, Paginas_Livro, Status_Livro) VALUES (@NomeLivro,
                     epErro.SetError(txtGenero, "O campo Gênero é obrigatório");
                     camposValidos = false;
                 }
+                //Editora
                 if (!String.IsNullOrEmpty(txtEditora.Text))
                 {
                     objCommand.Parameters.AddWithValue("@Editora", txtEditora.Text);
@@ -110,23 +105,38 @@ Genero_Livro, Editora_Livro, Paginas_Livro, Status_Livro) VALUES (@NomeLivro,
                     epErro.SetError(txtEditora, "O campo Editora é obrigatório");
                     camposValidos = false;
                 }
+                //Status
+                if (rdbDisponivel.Checked)
+                {
+                    objCommand.Parameters.AddWithValue("@Status", "D");
+                    camposValidos = true;
 
-
-                objCommand.Parameters.AddWithValue("@Paginas", txtPaginas.Value);
+                }
+                else
+                {
+                    objCommand.Parameters.AddWithValue("@Status", "I");
+                    camposValidos = true;
+                }
+                //Paginas
+                if (!String.IsNullOrEmpty(txtPaginas.Text))
+                {
+                    objCommand.Parameters.AddWithValue("@Paginas", txtPaginas.Text);
+                    camposValidos = true;
+                }
                 #endregion
                 if (camposValidos)
                 {
                     objConexao.Open();
                     objCommand.ExecuteNonQuery();
                     objConexao.Close();
-                    MessageBox.Show("Registro inserido com sucesso!", "Mensagem",
-                     MessageBoxButtons.OK, MessageBoxIcon.Information); LimparCampos();
-                    txtNome.Focus();
-                    btnVoltar.Enabled = true;
+                    MessageBox.Show("Livro alterado com sucesso!", "Mensagem",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Ops, ocorreram erros!\n\n Preencha os campos e tente novamente", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Ops, ocorreram erros!\n\nPreencha os campos e tente novamente", "Mensagem", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
@@ -134,28 +144,5 @@ Genero_Livro, Editora_Livro, Paginas_Livro, Status_Livro) VALUES (@NomeLivro,
                 MessageBox.Show(ex.Message);
             }
         }
-
-        private void LimparCampos()
-        {
-            txtNome.Text = "";
-            txtAutor.Text = "";
-            txtAno.Text = "";
-            txtGenero.Text = "";
-            txtEditora.Text = "";
-            rdbDisponivel.Checked = true;
-            rdbIndisponivel.Checked = false;
-            txtPaginas.Value = 0;
-        }
-
-        private void btnVoltar_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
     }
 }

@@ -92,6 +92,18 @@
     <Compile Include="frmAlterarExcluirClientes.Designer.cs">
       <DependentUpon>frmAlterarExcluirClientes.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAlterarFuncionarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAlterarFuncionarios.Designer.cs">
+      <DependentUpon>frmAlterarFuncionarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAlterarLivros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAlterarLivros.Designer.cs">
+      <DependentUpon>frmAlterarLivros.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmCadastrarFuncionarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,6 +177,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmAlterarExcluirClientes.resx">
       <DependentUpon>frmAlterarExcluirClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAlterarFuncionarios.resx">
+      <DependentUpon>frmAlterarFuncionarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAlterarLivros.resx">
+      <DependentUpon>frmAlterarLivros.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCadastrarClientes.resx">
       <DependentUpon>frmCadastrarClientes.cs</DependentUpon>

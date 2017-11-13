@@ -84,6 +84,7 @@
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(155, 52);
             this.btnCancelar.Text = "Cancelar Cadastro";
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // toolStrip2
             // 
